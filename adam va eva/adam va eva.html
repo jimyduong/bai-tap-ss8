@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="adam va eva.css">
+</head>
+<body>
+<div class="human">
+<pan id="adamname"></pan>
+<br>
+<pan id="adamweight"></pan>
+<br>
+<pan id="adamgender"></pan>
+<br>
+<button onclick="eatApple()">eat</button>
+<button onclick="say()">say</button>
+    <br>
+    <br>
+</div>
+<div class="apple">
+    <h3>Apple</h3>
+    <pan id="appleWeight"></pan><br><br></div>
+<div class="human1">
+    <pan id="evaname"></pan>
+    <br>
+    <pan id="evaweight"></pan>
+    <br>
+    <pan id="evagender"></pan>
+    <br>
+    <button onclick="eatApple1()">eat</button>
+    <button onclick="say1()">say</button>
+    <br>
+    <br>
+</div>
+<script>
+    let Apple = function () {
+        this.weight = 10;
+        this.status = true;
+
+        this.decrease = function () {
+            if (this.weight > 0) {
+                this.weight--;
+            }
+        };
+        this.isEmty = function () {
+            return this.status;
+        };
+        this.getWeight = function () {
+            return this.weight;
+        }
+    };
+    let Human = function (name,gender, weight) {
+        this.name = name;
+        this.gender = gender;
+        this.weight = weight;
+        this.sound = "";
+
+        // this.isMale = function () {
+        //     return this.gender;
+        // };
+        // this.setgender = function (gender) {
+        //     this.gender = gender;
+        // };
+        this.checkApple = function (tao) {
+            return tao.status;
+        };
+        this.setWeight = function (weight) {
+            this.weight = weight;
+        };
+        this.getWeight = function () {
+            return this.weight;
+        };
+        this.setName = function (name) {
+            this.name = name;
+        };
+        this.getName = function () {
+            return this.name;
+        };
+        this.eat = function (tao) {
+            if (tao.weight > 0) {
+                this.weight++;
+                tao.weight--;
+            }
+        };
+        this.say = function (talk) {
+            this.sound = talk;
+        };
+        this.display=function (name) {
+            document.getElementById(this.name+"name").innerHTML="Name: "+this.name;
+            document.getElementById(this.name+"weight").innerHTML="Weight: "+this.weight;
+            document.getElementById(this.name+"gender").innerHTML="Gender: "+this.gender;
+        }
+    };
+    let apple = new Apple();
+    document.getElementById("appleWeight").innerHTML = "weight: "+apple.weight;
+    let human = new Human("adam","male", 70);
+    let human1 = new Human("eva","woman", 60);
+    human.display();
+    human1.display();
+
+    function eatApple() {
+        human.eat(apple);
+        human.display();
+        document.getElementById("appleWeight").innerHTML = "weight: "+apple.weight;
+    }
+    function eatApple1() {
+        human1.eat(apple);
+        human1.display();
+        document.getElementById("appleWeight").innerHTML = "weight: "+apple.weight;
+    }
+
+    function say() {
+        human.say("hello eva");
+        alert(human.sound)
+    }
+    function say1() {
+        human.say("hello adam");
+        alert(human.sound)
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+.human{
+    width: 150px;
+    height: auto;
+    border: 3px solid cornflowerblue;
+    float: left;
+    margin-right: 30px;
+}
+.apple{
+    width: 100px;
+    height: auto;
+    border: 3px solid red;
+    float: left;
+    margin-right: 30px;
+}
+.human1{
+    width: 150px;
+    height: auto;
+    border: 3px solid palevioletred;
+    float: left;
+    margin-right: 30px;}
