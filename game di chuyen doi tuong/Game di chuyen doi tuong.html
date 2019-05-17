@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="game"></div>
+<div id="game2"></div>
+<script src="script.js"></script>
+<script>
+    function Hero(image, top, left, size) {
+        this.image = image;
+        this.top = top;
+        this.left = left;
+        this.size = size;
+        this.getHeroElement = function () {
+            return '<img width="' + this.size + '"' +
+                ' height="' + this.size + '"' +
+                ' src="' + this.image + '"' +
+                ' style="top: ' + this.top + 'px; left:' + this.left + 'px;position:absolute;" />';
+        };
+        this.moveRight = function () {
+            this.left += 20;
+        };
+        this.moveDown = function () {
+            this.top += 20;
+        };
+        this.moveLeft = function () {
+            this.left -= 20;
+        };
+        this.moveTop = function () {
+            this.top -= 20;
+        };
+        let a = 1;
+        this.start = function (name){
+            if (a == 1) {
+                if (name.left < window.innerWidth - name.size) {
+                    name.moveRight();
+                } else {
+                    a = 2
+                }
+            }
+            if (a == 2) {
+                if (name.top < window.innerHeight - name.size) {
+                    name.moveDown();
+                } else {
+                    a = 3
+                }
+            }
+            if (a == 3) {
+                if (name.left > 0) {
+                    name.moveLeft();
+                } else {
+                    a = 4
+                }
+            }
+            if (a == 4) {
+                if (name.top > 0) {
+                    name.moveTop();
+                } else {
+                    a = 1
+                }
+            }
+        }
+    }
+
+    let hero = new Hero('pikachu.png', 20, 30, 200);
+    let hero2=new Hero("pokemon.jpg",Math.floor(Math.random()*100),Math.floor(Math.random()*100),100);
+    setInterval(function () {
+        hero.start(hero);
+        hero2.start(hero2);
+        document.getElementById('game').innerHTML = hero.getHeroElement();
+        document.getElementById('game2').innerHTML = hero2.getHeroElement();
+    }, 10);
+</script>
+</body>
+</html>
